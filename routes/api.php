@@ -1,8 +1,12 @@
 <?php
 
 use App\Models\Mapping;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,10 +22,83 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('login', function (Request $request) {
+    $validate = Validator::make($request->all(), [
+        'email' => 'required',
+        'password' => 'required',
+    ]);
+
+    if ($validate->fails()) {
+        $response = [
+            'message' => 'harap isi email dan password',
+            'errors' => null,
+            'code' => 202,
+        ];
+        return response()->json($response, 400);
+    }
+
+    $user = User::where('email', $request->email)->first();
+    if ($user == null) {
+        $response = [
+            'message' => 'email tidak ditemukan',
+            'errors' => null,
+            'code' => 202,
+        ];
+        return response()->json($response, 200);
+    }
+    if (!Hash::check($request->password, $user->password, [])) {
+        $response = [
+            'message' => 'password anda salah',
+            'errors' => null,
+            'code' => 202,
+        ];
+        return response()->json($response, 200);
+    }
+    $token = Str::random(60);
+    $user->update(['remember_token' => $token]);
+    $response = [
+        'message' => 'Berhasil masuk',
+        'errors' => null,
+        'code' => 201,
+        'user' => $user
+    ];
+    return $response;
+});
+Route::post('check-login', function (Request $request) {
+    $user = User::whereRememberToken($request->token)->first();
+    if ($user == null) {
+        return [
+            'message' => 'Token telah kadaluarsa',
+            'errors' => null,
+            'code' => 202,
+
+        ];
+    } else {
+        return [
+            "message" => "Selamat datang kembali",
+            'errors' => null,
+            'code' => 201,
+            'user' => $user
+        ];
+    }
+});
+Route::post('logout', function (Request $request) {
+    $user = User::whereRememberToken($request->token)
+        ->update([
+            "remember_token" => ""
+        ]);
+    return [
+        "message" => "Selamat datang kembali",
+        'errors' => null,
+        'code' => 201,
+    ];
+});
+
 //Route::middleware('api')->group(function (){
-    Route::get('/mapping', function () {
-        return Mapping::get();
-    });
+Route::get('/mapping', function () {
+    return Mapping::get();
+});
 //});
 
 
