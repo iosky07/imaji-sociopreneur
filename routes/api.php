@@ -1,10 +1,13 @@
 <?php
 
 use App\Models\Mapping;
+use App\Models\Presence;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -155,4 +158,37 @@ Route::post('/mapping/update/status', function (Request $request) {
         'code' => 201,
         'error' => ''
     ];
+});
+Route::post('/mapping/update/photo',function (Request $request){
+    $file = $request->file('file');
+    $filename = Str::slug($request->id . '-' . date('Hms')) . '.' . $request->file('file')->getClientOriginalExtension();
+    Storage::disk('local')->put('public/mapping/' . $filename, file_get_contents($file));
+
+    Mapping::find(str_replace('"', '', $request->id))->update([
+        'photo' => 'mapping/' . $filename
+    ]);
+
+    return [
+        'message' => 'berhasil mengubah foto',
+        'code' => 201,
+        'error' => ''
+    ];
+});
+
+Route::post('/presence',function (Request $request){
+    $presence = Presence::whereDate('created_at', Carbon::today())->whereUserId($request->user_id)->first();
+    if ($presence==null){
+        Presence::create(['user_id'=>$request->user_id,'status'=>$request->status]);
+        return [
+            'message' => 'telah berhasil melakukan presensi',
+            'code' => 201,
+            'error' => ''
+        ];
+    }else{
+        return [
+            'message' => 'anda telah melakukan presensi sebelumnya',
+            'code' => 201,
+            'error' => ''
+        ];
+    }
 });
