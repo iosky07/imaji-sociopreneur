@@ -34,7 +34,7 @@ class User extends Authenticatable
         'place_of_birth',
         'date_of_birth',
         'address',
-        'employee_id'
+        'employee_id',
     ];
 
     /**

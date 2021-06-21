@@ -176,9 +176,11 @@ Route::post('/mapping/update/photo',function (Request $request){
 });
 
 Route::post('/presence',function (Request $request){
+    $lat=-8.1536666;
+    $long=113.7247774;
     $presence = Presence::whereDate('created_at', Carbon::today())->whereUserId($request->user_id)->first();
     if ($presence==null){
-        Presence::create(['user_id'=>$request->user_id,'status'=>$request->status]);
+        Presence::create(['user_id'=>$request->user_id,'status'=>$request->status,'distance'=>haversineGreatCircleDistance($lat,$long,$request->latitude,$request->longitude)]);
         return [
             'message' => 'telah berhasil melakukan presensi',
             'code' => 201,
@@ -192,3 +194,20 @@ Route::post('/presence',function (Request $request){
         ];
     }
 });
+
+function haversineGreatCircleDistance(
+    $latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000)
+{
+    // convert from degrees to radians
+    $latFrom = deg2rad($latitudeFrom);
+    $lonFrom = deg2rad($longitudeFrom);
+    $latTo = deg2rad($latitudeTo);
+    $lonTo = deg2rad($longitudeTo);
+
+    $latDelta = $latTo - $latFrom;
+    $lonDelta = $lonTo - $lonFrom;
+
+    $angle = 2 * asin(sqrt(pow(sin($latDelta / 2), 2) +
+            cos($latFrom) * cos($latTo) * pow(sin($lonDelta / 2), 2)));
+    return $angle * $earthRadius;
+}
