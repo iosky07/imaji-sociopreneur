@@ -176,8 +176,8 @@ Route::post('/mapping/update/photo',function (Request $request){
 });
 
 Route::post('/presence',function (Request $request){
-    $lat=-8.1536666;
-    $long=113.7247774;
+    $lat=-8.1536841;
+    $long=113.726997;
     $presence = Presence::whereDate('created_at', Carbon::today())->whereUserId($request->user_id)->first();
     if ($presence==null){
         Presence::create(['user_id'=>$request->user_id,'status'=>$request->status,'distance'=>haversineGreatCircleDistance($lat,$long,$request->latitude,$request->longitude)]);
