@@ -175,6 +175,10 @@ Route::post('/mapping/update/photo',function (Request $request){
     ];
 });
 
+Route::get('/presence/{user_id}',function ($user_id){
+   return Presence::whereUserId($user_id)->get();
+});
+
 Route::post('/presence',function (Request $request){
     $lat=-8.1536841;
     $long=113.726997;
