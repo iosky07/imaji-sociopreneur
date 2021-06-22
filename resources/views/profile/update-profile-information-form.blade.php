@@ -10,7 +10,7 @@
     <x-slot name="form">
         <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-            <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
+            <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-6">
                 <!-- Profile Photo File Input -->
                 <input type="file" class="hidden"
                             wire:model="photo"
@@ -53,39 +53,39 @@
         @endif
 
         <!-- Name -->
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-6 sm:col-span-6">
             <x-jet-label for="name" value="{{ __('Name') }}" />
             <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 
         <!-- Email -->
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-6 sm:col-span-6">
             <x-jet-label for="email" value="{{ __('Email') }}" />
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
-        <div class="form-group col-span-6 sm:col-span-4">
+        <div class="form-group col-span-6 sm:col-span-6">
             <x-jet-label for="place_of_birth" value="{{ __('place of birth') }}"/>
             <x-jet-input id="place_of_birth" type="text" class="mt-1 block w-full form-control shadow-none"
                          wire:model.defer="user.place_of_birth"/>
             <x-jet-input-error for="user.place_of_birth" class="mt-2"/>
         </div>
 
-        <div class="form-group col-span-6 sm:col-span-4">
+        <div class="form-group col-span-6 sm:col-span-6">
             <x-jet-label for="date_of_birth" value="{{ __('date of birth') }}"/>
             <x-jet-input id="date_of_birth" type="text" class="mt-1 block w-full form-control shadow-none"
                          wire:model.defer="user.date_of_birth"/>
             <x-jet-input-error for="user.date_of_birth" class="mt-2"/>
         </div>
 
-        <div class="form-group col-span-6 sm:col-span-4">
+        <div class="form-group col-span-6 sm:col-span-6">
             <x-jet-label for="no_rek" value="{{ __('No Rekening') }}"/>
             <x-jet-input id="no_rek" type="text" class="mt-1 block w-full form-control shadow-none"
                          wire:model.defer="user.no_rek"/>
             <x-jet-input-error for="user.no_rek" class="mt-2"/>
         </div>
-        <div class="form-group col-span-6 sm:col-span-4">
+        <div class="form-group col-span-6 sm:col-span-6">
             <x-jet-label for="name_bank" value="{{ __('Bank Name') }}"/>
             <x-jet-input id="name_bank" type="text" class="mt-1 block w-full form-control shadow-none"
                          wire:model.defer="user.name_bank"/>
