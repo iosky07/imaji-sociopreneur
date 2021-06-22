@@ -10,9 +10,9 @@
                     Name
                     @include('components.sort-icon', ['field' => 'name'])
                 </a></th>
-                <th><a wire:click.prevent="sortBy('email')" role="button" href="#">
-                    Email
-                    @include('components.sort-icon', ['field' => 'email'])
+                <th><a wire:click.prevent="sortBy('no_ktp')" role="button" href="#">
+                    No KTP
+                    @include('components.sort-icon', ['field' => 'no_ktp'])
                 </a></th>
                 <th><a wire:click.prevent="sortBy('no_rek')" role="button" href="#">
                     No Rekening
@@ -30,7 +30,7 @@
                 <tr x-data="window.__controller.dataTableController({{ $user->id }})">
                     <td>{{ $user->employee_id }}</td>
                     <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->no_ktp }}</td>
                     <td>{{ $user->no_rek }}</td>
                     <td>{{ $user->name_bank }}</td>
 {{--                    <td>{{ $user->created_at->format('d M Y H:i') }}</td>--}}
