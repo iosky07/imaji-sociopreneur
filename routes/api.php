@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
+use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -176,7 +177,8 @@ Route::post('/mapping/update/photo',function (Request $request){
 });
 
 Route::get('/presence/{user_id}',function ($user_id){
-   return Presence::whereUserId($user_id)->get();
+   //return Presence::whereUserId($user_id)->get();
+    return DB::select('select * from presences where user_id = ?', [$user_id]);
 });
 
 Route::post('/presence',function (Request $request){
