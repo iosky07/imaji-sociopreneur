@@ -67,7 +67,7 @@
                     <x-jet-input-error for="user.employee_id" class="mt-2"/>
                 </div>
             @endif
-            @if($action=="update")
+            @if($action=="updateUser")
                 <div class="form-group col-span-6 sm:col-span-5">
                     <x-jet-label for="place_of_birth" value="{{ __('place of birth') }}"/>
                     <x-jet-input id="place_of_birth" type="text" class="mt-1 block w-full form-control shadow-none"
