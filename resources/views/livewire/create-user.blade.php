@@ -97,6 +97,7 @@
             @endif
 
             <div class="form-group col-span-6 sm:col-span-5">
+                <x-jet-label for="name_bank" value="{{ __('Quotes') }}"/>
             <textarea wire:model.defer="user.quotes" class="mt-1 block w-full form-control shadow-none"></textarea/>
             </div>
         </x-slot>
