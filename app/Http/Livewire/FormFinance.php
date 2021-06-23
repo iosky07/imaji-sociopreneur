@@ -75,7 +75,7 @@ public $f;
 //            });
 //            $image->stream();
 //            Storage::disk('local')->put('public/finance/' . $filename, $image, 'public');
-            $this->file->store('finance');
+            $this->file->store('public/finance',$filename);
             $this->finance['file'] = 'finance/' . $filename;
         }
         Finance::create($this->finance);
