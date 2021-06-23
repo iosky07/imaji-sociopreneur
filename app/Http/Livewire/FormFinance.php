@@ -69,13 +69,13 @@ public $f;
         $this->resetErrorBag();
         if ($this->file != null) {
             $image = $this->file;
-            $filename = Str::slug($this->finance['title']) . '-' . auth()->user()->name . '-' . rand(0, 1000) . '.' . $image->getClientOriginalExtension();
+            $filename = Str::slug($this->finance['title']) . '-' . auth()->user()->name . '-' . rand(0, 1000);
 //            $image = Image::make($image)->resize(640, null, function ($constraint) {
 //                $constraint->aspectRatio();
 //            });
 //            $image->stream();
 //            Storage::disk('local')->put('public/finance/' . $filename, $image, 'public');
-            $this->file->store('public/finance',$filename);
+            $this->file->storeAs('public/finance',$filename);
             $this->finance['file'] = 'finance/' . $filename;
         }
         Finance::create($this->finance);
