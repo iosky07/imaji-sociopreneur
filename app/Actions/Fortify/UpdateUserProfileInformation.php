@@ -36,6 +36,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'name' => $input['name'],
                 'email' => $input['email'],
                 'quotes' => $input['quotes'],
+                'name_bank' => $input['name_bank'],
+                'no_ktp' => $input['no_ktp'],
+                'place_of_birth' => $input['place_of_birth'],
+                'date_of_birth' => $input['date_of_birth'],
+                'no_rek' => $input['no_rek'],
             ])->save();
         }
     }
