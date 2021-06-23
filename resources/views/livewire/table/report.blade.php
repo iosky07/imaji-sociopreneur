@@ -31,7 +31,7 @@
                     <td>{{ $report->id }}</td>
                     <td>{{ $report->title }}</td>
                     @if(Auth::user()->role==1)
-                        <td>{{ $finance->user->name }}</td>
+                        <td>{{ $report->user->name }}</td>
                     @endif
                     <td>{{ $report->updated_at->format('d M Y H:i') }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
