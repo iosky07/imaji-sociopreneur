@@ -74,7 +74,7 @@ public $f;
 //                $constraint->aspectRatio();
 //            });
 //            $image->stream();
-            Storage::disk('local')->put('public/finance/' . $filename, file_get_contents($image), 'public');
+            Storage::disk('local')->put('public/finance/' . $filename, $image, 'public');
             $this->finance['file'] = 'finance/' . $filename;
         }
         Finance::create($this->finance);
