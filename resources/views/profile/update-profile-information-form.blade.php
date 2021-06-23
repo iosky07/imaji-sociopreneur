@@ -67,36 +67,37 @@
         </div>
         <div class="form-group col-span-6 sm:col-span-6">
             <x-jet-label for="no_ktp" value="{{ __('No Ktp') }}"/>
-            <x-jet-input id="no_ktp" type="text" class="mt-1 block w-full form-control shadow-none"
+            <input id="no_ktp" type="text" class="mt-1 block w-full form-control shadow-none"
+                   name="no_ktp"
                          wire:model.defer="user.no_ktp"/>
             <x-jet-input-error for="user.no_ktp" class="mt-2"/>
         </div>
-        <div class="form-group col-span-6 sm:col-span-6">
-            <x-jet-label for="place_of_birth" value="{{ __('place of birth') }}"/>
-            <x-jet-input id="place_of_birth" type="text" class="mt-1 block w-full form-control shadow-none"
-                         wire:model.defer="user.place_of_birth"/>
-            <x-jet-input-error for="user.place_of_birth" class="mt-2"/>
-        </div>
+{{--        <div class="form-group col-span-6 sm:col-span-6">--}}
+{{--            <x-jet-label for="place_of_birth" value="{{ __('place of birth') }}"/>--}}
+{{--            <x-jet-input id="place_of_birth" type="text" class="mt-1 block w-full form-control shadow-none"--}}
+{{--                         wire:model.defer="user.place_of_birth"/>--}}
+{{--            <x-jet-input-error for="user.place_of_birth" class="mt-2"/>--}}
+{{--        </div>--}}
 
-        <div class="form-group col-span-6 sm:col-span-6">
-            <x-jet-label for="date_of_birth" value="{{ __('date of birth') }}"/>
-            <x-jet-input id="date_of_birth" type="text" class="mt-1 block w-full form-control shadow-none"
-                         wire:model.defer="user.date_of_birth"/>
-            <x-jet-input-error for="user.date_of_birth" class="mt-2"/>
-        </div>
+{{--        <div class="form-group col-span-6 sm:col-span-6">--}}
+{{--            <x-jet-label for="date_of_birth" value="{{ __('date of birth') }}"/>--}}
+{{--            <x-jet-input id="date_of_birth" type="text" class="mt-1 block w-full form-control shadow-none"--}}
+{{--                         wire:model.defer="user.date_of_birth"/>--}}
+{{--            <x-jet-input-error for="user.date_of_birth" class="mt-2"/>--}}
+{{--        </div>--}}
 
-        <div class="form-group col-span-6 sm:col-span-6">
-            <x-jet-label for="no_rek" value="{{ __('No Rekening') }}"/>
-            <x-jet-input id="no_rek" type="text" class="mt-1 block w-full form-control shadow-none"
-                         wire:model.defer="user.no_rek"/>
-            <x-jet-input-error for="user.no_rek" class="mt-2"/>
-        </div>
-        <div class="form-group col-span-6 sm:col-span-6">
-            <x-jet-label for="name_bank" value="{{ __('Bank Name') }}"/>
-            <x-jet-input id="name_bank" type="text" class="mt-1 block w-full form-control shadow-none"
-                         wire:model.defer="user.name_bank"/>
-            <x-jet-input-error for="user.name_bank" class="mt-2"/>
-        </div>
+{{--        <div class="form-group col-span-6 sm:col-span-6">--}}
+{{--            <x-jet-label for="no_rek" value="{{ __('No Rekening') }}"/>--}}
+{{--            <x-jet-input id="no_rek" type="text" class="mt-1 block w-full form-control shadow-none"--}}
+{{--                         wire:model.defer="user.no_rek"/>--}}
+{{--            <x-jet-input-error for="user.no_rek" class="mt-2"/>--}}
+{{--        </div>--}}
+{{--        <div class="form-group col-span-6 sm:col-span-6">--}}
+{{--            <x-jet-label for="name_bank" value="{{ __('Bank Name') }}"/>--}}
+{{--            <x-jet-input id="name_bank" type="text" class="mt-1 block w-full form-control shadow-none"--}}
+{{--                         wire:model.defer="user.name_bank"/>--}}
+{{--            <x-jet-input-error for="user.name_bank" class="mt-2"/>--}}
+{{--        </div>--}}
 
         <div class="col-span-6 sm:col-span-6">
             <x-jet-label for="email" value="{{ __('Quotes') }}" />
