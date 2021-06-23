@@ -10,6 +10,6 @@
     </x-slot>
 
     <div>
-        <livewire:form-report action="update" contentId="1"/>
+        <livewire:form-report action="update" reportId="1"/>
     </div>
 </x-app-layout>
