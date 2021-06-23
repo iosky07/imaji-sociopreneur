@@ -66,11 +66,10 @@
             <x-jet-input-error for="email" class="mt-2" />
         </div>
         <div class="form-group col-span-6 sm:col-span-6">
-            <x-jet-label for="no_ktp" value="{{ __('No Ktp') }}"/>
-            <input id="no_ktp" type="text" class="mt-1 block w-full form-control shadow-none"
-                   name="no_ktp"
-                         wire:model.defer="user.no_ktp"/>
-            <x-jet-input-error for="user.no_ktp" class="mt-2"/>
+
+            <label for="">No Ktp</label>
+            <input id="email" type="text" class="mt-1 block w-full form-control shadow-none"
+                   name="no_ktp" wire:model.defer="user.no_ktp"/>
         </div>
 {{--        <div class="form-group col-span-6 sm:col-span-6">--}}
 {{--            <x-jet-label for="place_of_birth" value="{{ __('place of birth') }}"/>--}}
@@ -101,9 +100,8 @@
 
         <div class="col-span-6 sm:col-span-6">
             <x-jet-label for="email" value="{{ __('Quotes') }}" />
-            <textarea name="quotes" id="quotes"  class="form-control" cols="30" rows="10" wire:model.defer="state.quotes">
-            </textarea>
-            <x-jet-input-error for="email" class="mt-2" />
+            <textarea name="quotes" id="quotes"  class="form-control" cols="30" rows="10" wire:model.defer="state.quotes"></textarea>
+
         </div>
 
     </x-slot>
