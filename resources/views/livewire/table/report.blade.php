@@ -35,7 +35,7 @@
                     @endif
                     <td>{{ $report->updated_at->format('d M Y H:i') }}</td>
                     <td class="whitespace-no-wrap row-action--icon">
-                        <a role="button" href="report/edit/{{ $report->id }}" class="mr-3"><i
+                        <a role="button" href="{{ route('admin.report.edit',$report->id) }}" class="mr-3"><i
                                 class="fa fa-16px fa-pen"></i></a>
                         <a role="button" x-on:click.prevent="deleteItem" href="#"><i
                                 class="fa fa-16px fa-trash text-red-500"></i></a>
