@@ -61,13 +61,8 @@ class FormBudget extends Component
         $this->validate();
         $this->resetErrorBag();
         if ($this->file != null) {
-            $image = $this->file;
-            $filename = Str::slug($this->budget['title']) . '-' . auth()->user()->name . '-' . rand(0, 1000) . '.' . $image->getClientOriginalExtension();
-//            $image = Image::make($image)->resize(640, null, function ($constraint) {
-//                $constraint->aspectRatio();
-//            });
-//            $image->stream();
-            Storage::disk('local')->put('public/budget/' . $filename, file_get_contents($image), 'public');
+            $filename = Str::slug($this->budget['title']) . '-' . auth()->user()->name . '-' . rand(0, 1000);
+            $this->file->storeAs('public/budget',$filename);
             $this->budget['file'] = 'budget/' . $filename;
         }
         Budget::create($this->budget);
@@ -87,15 +82,9 @@ class FormBudget extends Component
         $this->resetErrorBag();
         if ($this->file != null) {
             Storage::disk('local')->delete('public/' . $this->budget['file']);
-            $image = $this->file;
-            $filename = Str::slug($this->budget['title']) . '-' . auth()->user()->name . '-' . rand(0, 1000) . '.' . $image->getClientOriginalExtension();
-//            $image = Image::make($image)->resize(640, null, function ($constraint) {
-//                $constraint->aspectRatio();
-//            });
-//            $image->stream();
-            Storage::disk('local')->put('public/budget/' . $filename, file_get_contents($image), 'public');
+            $filename = Str::slug($this->budget['title']) . '-' . auth()->user()->name . '-' . rand(0, 1000);
+            $this->file->storeAs('public/budget',$filename);
             $this->budget['file'] = 'budget/' . $filename;
-
         }
 
         Budget::find($this->budgetId)->update($this->budget);

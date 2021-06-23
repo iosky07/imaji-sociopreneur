@@ -68,13 +68,7 @@ public $f;
         $this->validate();
         $this->resetErrorBag();
         if ($this->file != null) {
-            $image = $this->file;
             $filename = Str::slug($this->finance['title']) . '-' . auth()->user()->name . '-' . rand(0, 1000);
-//            $image = Image::make($image)->resize(640, null, function ($constraint) {
-//                $constraint->aspectRatio();
-//            });
-//            $image->stream();
-//            Storage::disk('local')->put('public/finance/' . $filename, $image, 'public');
             $this->file->storeAs('public/finance',$filename);
             $this->finance['file'] = 'finance/' . $filename;
         }
@@ -95,15 +89,9 @@ public $f;
         $this->resetErrorBag();
         if ($this->file != null) {
             Storage::disk('local')->delete('public/' . $this->finance['file']);
-            $image = $this->file;
-            $filename = Str::slug($this->finance['title']) . '-' . auth()->user()->name . '-' . rand(0, 1000) . '.' . $image->getClientOriginalExtension();
-//            $image = Image::make($image)->resize(640, null, function ($constraint) {
-//                $constraint->aspectRatio();
-//            });
-//            $image->stream();
-            Storage::disk('local')->put('public/finance/' . $filename, file_get_contents($image), 'public');
+            $filename = Str::slug($this->finance['title']) . '-' . auth()->user()->name . '-' . rand(0, 1000);
+            $this->file->storeAs('public/finance',$filename);
             $this->finance['file'] = 'finance/' . $filename;
-
         }
 
         Finance::find($this->financeId)->update($this->finance);
